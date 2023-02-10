@@ -8,7 +8,7 @@ def get_requirements()->[str]:
        requirement_list=[requirement_name.repalce("\n","") for requirement_name in requirement_list]
     if HYPEN_E_DOT in requirement_list:
         requirement_list.remove(HYPEN_E_DOT)
-        
+
     return requirement_list
 
     setup(
