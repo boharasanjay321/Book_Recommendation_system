@@ -1,21 +1,24 @@
+from Book_System.logger import logging
+from Book_System.exception import SensorException
+import sys
 
-# Database Name
-dataBase = client["neurolabDB"]
 
-# Collection  Name
-collection = dataBase['Products']
+def test_logger_and_exception():
+     try:
+          logging.info("start the test logger")
+          result=3/0
 
-# Sample data
-d = {'companyName': 'iNeuron',
-     'product': 'Affordable AI',
-     'courseOffered': 'Machine Learning with Deployment'}
+          print(result)
+          logging.info("stopping the test logger")
+     except Exception as e:
+          logging.debug(str(e))
+          raise SensorException(e, sys)
 
-# Insert above records in the collection
-rec = collection.insert_one(d)
 
-# Lets Verify all the record at once present in the record with all the fields
-all_record = collection.find()
 
-# Printing all records present in the collection
-for idx, record in enumerate(all_record):
-     print(f"{idx}: {record}")
+
+if __name__=="__main__":
+     try:
+          test_logger_and_exception()
+     except Exception as e:
+          print(e)
